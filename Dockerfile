@@ -1,5 +1,5 @@
 # Use base node image
-FROM quay.io/eclipse/che-nodejs10-ubi:nightly
+FROM registry.redhat.io/devspaces/udi-rhel8:latest
 
 RUN mkdir /home/nodejs-mongodb-sample
 WORKDIR /home/nodejs-mongodb-sample
