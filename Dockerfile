@@ -1,18 +1,6 @@
 # Use base node image
 FROM registry.redhat.io/devspaces/udi-rhel8:latest
 
-RUN mkdir /home/nodejs-mongodb-sample
-WORKDIR /home/nodejs-mongodb-sample
-
-# Copy package.json and install dependencies
-COPY package*.json ./
-RUN npm install
-
-# Copy rest of the application source code
-COPY . .
-
-# Run app.js with debugging port when container launches
-ENTRYPOINT ["npm", "run-script", "debug"]
-
-# Comment above and uncomment below to run app.js without debugger port when container launches
-# ENTRYPOINT ["npm", "start"]
+RUN curl -fsSL -o mongocli_linux_x86_64.rpm https://fastdl.mongodb.org/mongocli/mongocli_1.29.0_linux_x86_64.rpm; \
+    yum install -y ./mongocli_linux_x86_64.rpm; \
+    rm -f ./mongocli_linux_x86_64.rpm
